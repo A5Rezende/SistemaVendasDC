@@ -29,6 +29,7 @@
                 <td>{{ $venda->data_venda }}</td>
                 <td>
                     <a href="{{ route('vendas.show', $venda->id) }}" class="me-3"><i class="bi bi-eye"></i></a>
+                    <a href="{{ route('vendas.edit', $venda->id) }}" class="me-3"><i class="bi bi-pencil-square"></i></a>
                     <form action="{{ route('vendas.destroy', $venda->id) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')

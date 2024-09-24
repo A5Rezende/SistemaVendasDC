@@ -15,7 +15,6 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Senha</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -25,7 +24,6 @@
                 <td>{{ $vendedor->id }}</td>
                 <td>{{ $vendedor->nome }}</td>
                 <td>{{ $vendedor->cpf }}</td>
-                <td>{{ $vendedor->senha }}</td>
                 <td>
                     <a href="{{ route('vendedores.show', $vendedor->id) }}" class="me-3"><i class="bi bi-eye"></i></a>
                     <a href="{{ route('vendedores.edit', $vendedor->id) }}" class="me-3"><i class="bi bi-pencil-square"></i></a>

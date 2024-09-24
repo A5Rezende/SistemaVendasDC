@@ -34,13 +34,11 @@ class VendedorController extends Controller
         $request->validate([
             'nome' => 'required',
             'cpf' => 'required|unique:vendedores,cpf',
-            'senha' => 'required',
         ]);
 
         Vendedor::create([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
-            'senha' => Hash::make($request->senha),
         ]);
 
         return redirect()->route('vendedores.index')->with('success', 'Vendedor criado com sucesso');
@@ -72,13 +70,11 @@ class VendedorController extends Controller
         $request->validate([
             'nome' => 'required',
             'cpf' => 'required|unique:vendedores,cpf,' . $vendedor->id,
-            'senha' => 'required',
         ]);
 
         $vendedor->update([
             'nome' => $request->nome,
             'cpf' => $request->cpf,
-            'senha' => $request->senha ? Hash::make($request->senha):$vendedor->senha,
         ]);
         return redirect()->route('vendedores.index')->with('success', 'Vendedor atualizado com sucesso');
     }
@@ -91,24 +87,5 @@ class VendedorController extends Controller
         $vendedor = $vendedore;
         $vendedor->delete();
         return redirect()->route('vendedores.index')->with('success', 'Vendedor deletado com sucesso');
-    }
-
-    public function login(Request $request)
-    {
-        dd('Entrou');
-
-        $credenciais = $request->validate([
-            'cpf' => ['required', 'string'],
-            'senha' => ['required'],
-        ]);
-
-        $vendedor = Vendedor::where('cpf', $request->cpf)->First();
-
-        if ($vendedor && Hash::check($request->senha, $vendedor->senha)) {
-            Auth::login($vendedor);
-            return redirect()->route('vendedores.index')->with('success', 'Logado');
-        } else {
-            return back();
-        }
     }
 }

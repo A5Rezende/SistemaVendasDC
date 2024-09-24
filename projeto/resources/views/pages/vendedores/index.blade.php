@@ -28,10 +28,6 @@
             <label>CPF</label>
             <input type="text" name="cpf" class="form-control" value="{{ old('cpf', $vendedor->cpf ?? '') }}" {{ isset($viewMode) ? 'disabled' : '' }}>
         </div>
-        <div class="form-group">
-            <label>Senha</label>
-            <input type="text" name="senha" class="form-control" value="{{ old('senha', $vendedor->senha ?? '') }}" {{ isset($viewMode) ? 'disabled' : '' }}>
-        </div>
 
         @if (!isset($viewMode))
             <button type="submit" class="btn btn-primary">Salvar</button>
