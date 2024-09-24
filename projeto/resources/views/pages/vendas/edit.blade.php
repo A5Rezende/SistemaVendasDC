@@ -134,6 +134,21 @@
         }
     }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        // Calcula o total da venda quando a página é carregada
+        calcularTotalVenda();
+
+        // Calcula os totais sempre que houver mudanças nos inputs de quantidade, preço ou valor de parcela
+        document.querySelectorAll('.quantidade, .preco-unitario').forEach(input => {
+            input.addEventListener('input', validarTotais);
+        });
+
+        // Adiciona evento de input para os campos de valor de parcela
+        document.querySelectorAll('[name="valor_parcela[]"]').forEach(input => {
+            input.addEventListener('input', validarTotais);
+        });
+    });
+
     document.getElementById('adicionar-item').addEventListener('click', function() {
         const item = document.querySelector('.item-venda').cloneNode(true);
         document.getElementById('itens-venda').appendChild(item);
@@ -142,14 +157,13 @@
         item.querySelector('.preco-unitario').addEventListener('input', validarTotais);
     });
 
+    // Atualiza as parcelas ao mudar a quantidade de parcelas e adiciona eventos de input
     document.getElementById('quantidade_parcelas').addEventListener('input', function() {
         const quantidadeParcelas = parseInt(this.value);
-
         const total_venda = calcularTotalVenda();
         const valor_parcela = total_venda / quantidadeParcelas;
 
         const parcelasContainer = document.getElementById('parcelas');
-
         parcelasContainer.innerHTML = '';
 
         for (let i = 0; i < quantidadeParcelas; i++) {
@@ -173,21 +187,11 @@
             parcelasContainer.insertAdjacentHTML('beforeend', parcelaHtml);
         }
 
+        // Adiciona evento de input para os novos campos de valor de parcela
         document.querySelectorAll('[name="valor_parcela[]"]').forEach(input => {
             input.addEventListener('input', validarTotais);
         });
+
         validarTotais();
-    });
-
-    document.querySelectorAll('.quantidade, .preco-unitario').forEach(input => {
-        input.addEventListener('input', validarTotais);
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        calcularTotalVenda();
-
-        document.querySelectorAll('.quantidade, .preco-unitario').forEach(input => {
-            input.addEventListener('input', validarTotais);
-        });
     });
 </script>

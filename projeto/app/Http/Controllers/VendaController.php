@@ -114,6 +114,9 @@ class VendaController extends Controller
         ]);
 
         $venda = Venda::findOrFail($id);
+
+        //printf($venda->pagamentos);
+
         $venda->update([
             'id_cliente' => $request->id_cliente,
             'id_vendedor' => $request->id_vendedor,
@@ -130,14 +133,22 @@ class VendaController extends Controller
             ]);
         }
 
-        $venda->pagamento->parcelas()->delete();
-        $venda->pagamento->update([
-            'quantidade_parcelas' => $request->quantidade_parcelas,
-        ]);
+        foreach ($venda->pagamentos as $pag ) {
+            foreach($pag->parcelas as $par) {
+                $par->delete();
+            }
+        }
+
+        //$venda->pagamentos->parcelas()->delete();
+        foreach ($venda->pagamentos as $pag ) {
+            $pag->update([
+                'quantidade_parcelas' => $request->quantidade_parcelas,
+            ]);
+        }
 
         foreach ($request->valor_parcela as $key => $valor) {
             Parcela::create([
-                'id_pagamento' => $venda->pagamento->id,
+                'id_pagamento' => $venda->pagamentos[0]->id,
                 'id_forma_pagamento' => $request->forma_pagamento[$key],
                 'valor' => $valor,
                 'data_vencimento' => $request->data_vencimento[$key],
@@ -146,4 +157,5 @@ class VendaController extends Controller
 
         return redirect()->route('vendas.index')->with('success', 'Venda atualizada com sucesso!');
     }
+
 }

@@ -63,7 +63,7 @@
 
     <h4>Pagamento</h4>
     @foreach($venda->pagamentos as $pagamento)
-    <p><strong>Quantidade de Parcelas:</strong> {{ $venda->pagamento->quantidade_parcelas }}</p>
+    <p><strong>Quantidade de Parcelas:</strong> {{ $pagamento->quantidade_parcelas }}</p>
 
     <table class="table table-striped">
         <thead>
