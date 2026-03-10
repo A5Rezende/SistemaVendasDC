@@ -127,45 +127,35 @@ http://localhost:8000
 
 Este projeto foi desenvolvido com o objetivo de praticar desenvolvimento web utilizando Laravel, aplicando conceitos importantes como:
 
-Arquitetura MVC
-
-Modelagem de banco de dados
-
-CRUD completo
-
-Relacionamentos entre entidades
-
-Lógica de negócios para vendas e parcelamentos
+- Arquitetura MVC
+- Modelagem de banco de dados
+- CRUD completo
+- Relacionamentos entre entidades
+- Lógica de negócios para vendas e parcelamentos
 
 # 👨‍💻 Autor
 
-Antônio Gabriel Cardoso de Rezende Orlandini
+**Antônio Gabriel Cardoso de Rezende Orlandini**
 
 Desenvolvedor Full Stack
 
 Backend
 
-PHP (Laravel)
-
-Python (Django)
-
-Node.js
+- PHP (Laravel)
+- Python (Django)
+- Node.js
 
 Frontend
 
-JavaScript
-
-React
-
-Bootstrap
+- JavaScript
+- React
+- Bootstrap
 
 Banco de Dados
 
-PostgreSQL
-
-MySQL
-
-MongoDB
+- PostgreSQL
+- MySQL
+- MongoDB
 
 # ⭐ Considerações Finais
 
